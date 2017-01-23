@@ -9,6 +9,9 @@ globals:
 
 extends:
   "htmlacademy/es5"
+  
+plugins: 
+    brackets
 
 rules:
   camelcase: [2, { properties: "never" }]
