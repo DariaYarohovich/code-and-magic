@@ -8,21 +8,26 @@ var wizardEyes = setup.querySelector('#wizard-eyes');
 var fireballBlock = setup.querySelector('.setup-fireball-wrap');
 var fireball = fireballBlock.querySelector('.setup-fireball');
 
+var setupFormOpen = function() {
+  setup.classList.remove('invisible');
+}
+
+var setupFormClose = function() {
+  setup.classList.add('invisible');
+}
+
 /*open setup window*/
-setupOpen.addEventListener('click', function() {
-    setup.classList.remove('invisible');
-});
+
+setupOpen.addEventListener('click', setupFormOpen);
 
 /*close setup window*/
-setupClose.addEventListener('click', function() {
-    setup.classList.add('invisible');
-});
+setupClose.addEventListener('click', setupFormClose);
 
 /*choose color function*/
 function chooseColor(colorArr) {
     return colorArr[Math.floor(Math.random()*colorArr.length)];
 };
-   
+
 /*change coat color*/
 var coatColor = [
     'rgb(101, 137, 164)',
@@ -63,5 +68,4 @@ fireball.addEventListener('click', function() {
     fireballBlock.style.backgroundColor = chooseColor(fireballColor);
 });
 
-    
-    
+
