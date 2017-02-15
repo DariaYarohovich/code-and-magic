@@ -1,27 +1,61 @@
 'use strict'
 
 var setup = document.querySelector('.setup');
-var setupOpen = document.querySelector('.setup-open');
+var setupOpen = document.querySelector('.setup-open-icon');
 var setupClose = setup.querySelector('.setup-close');
 var wizardCoat = setup.querySelector('#wizard-coat');
 var wizardEyes = setup.querySelector('#wizard-eyes');
 var fireballBlock = setup.querySelector('.setup-fireball-wrap');
 var fireball = fireballBlock.querySelector('.setup-fireball');
 
+var ESCAPE_KEY_CODE = 27;
+var ENTER_KEY_CODE = 13;
+
+var isActivateEvent = function (event) {
+  return event.keyCode && event.keyCode === ENTER_KEY_CODE;
+}
+
+var isHideEvent = function (event) {
+  return event.keyCode && event.keyCode === ESCAPE_KEY_CODE;
+}
+
+var setupKeydownHandler = function (event) {
+  if (isHideEvent(event)) {
+    setupFormClose();
+  }
+}
+
 var setupFormOpen = function() {
   setup.classList.remove('invisible');
+  document.addEventListener('keydown', setupKeydownHandler);
+  setupOpen.setAttribute('aria-pressed', true);
+  setupClose.setAttribute('aria-pressed', false);
 }
 
 var setupFormClose = function() {
   setup.classList.add('invisible');
+  document.removeEventListener('keydown', setupKeydownHandler);
+  setupOpen.setAttribute('aria-pressed', false);
+  setupClose.setAttribute('aria-pressed', true);
 }
 
 /*open setup window*/
-
 setupOpen.addEventListener('click', setupFormOpen);
+
+setupOpen.addEventListener('keydown' , function (event) {
+  if(isActivateEvent(event)) {
+    setupFormOpen();
+  }
+})
 
 /*close setup window*/
 setupClose.addEventListener('click', setupFormClose);
+
+setupClose.addEventListener('keydown', function (event) {
+  if(isActivateEvent(event)) {
+    setupFormClose();
+  }
+})
 
 /*choose color function*/
 function chooseColor(colorArr) {
