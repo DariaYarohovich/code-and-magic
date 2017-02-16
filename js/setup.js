@@ -57,11 +57,6 @@ setupClose.addEventListener('keydown', function (event) {
   }
 })
 
-/*choose color function*/
-function chooseColor(colorArr) {
-    return colorArr[Math.floor(Math.random()*colorArr.length)];
-};
-
 /*change coat color*/
 var coatColor = [
     'rgb(101, 137, 164)',
@@ -72,9 +67,7 @@ var coatColor = [
     'rgb(0, 0, 0)'
 ];
 
-wizardCoat.addEventListener('click', function() {
-    wizardCoat.style.fill = chooseColor(coatColor);
-});
+colorizeElement(wizardCoat, coatColor, 'fill');
 
 /*change eyes color*/
 var eyesColor = [
@@ -85,9 +78,7 @@ var eyesColor = [
     'green'
 ];
 
-wizardEyes.addEventListener('click', function() {
-    wizardEyes.style.fill = chooseColor(eyesColor);
-});
+colorizeElement(wizardEyes, eyesColor, 'fill');
 
 /*change fireball color*/
 var fireballColor = [
@@ -98,8 +89,6 @@ var fireballColor = [
     '#e6e848'
 ];
 
-fireball.addEventListener('click', function() {
-    fireballBlock.style.backgroundColor = chooseColor(fireballColor);
-});
+colorizeElement(fireballBlock, fireballColor, 'backgroundColor');
 
 
